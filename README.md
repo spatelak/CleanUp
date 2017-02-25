@@ -1,5 +1,5 @@
 # CleanUp
-Prompts you to remove random files or old files from your system to help it keep clean.
+Prompts user to remove random files or old files from your system to help it keep clean.
 
 ## System Requirements
 Currently built to work on mac
