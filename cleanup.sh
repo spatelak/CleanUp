@@ -43,8 +43,7 @@ do
     read ANS
 
     case $ANS in
-        1 )
-            echo "Okay! The file $FILE is now in Trash"
+        1 ) echo "Okay! The file $FILE is now in Trash"
             mv $DIRPATH/"{$FILE}" $TRASH                       ;;
         2 ) echo "Okay, we're keeping the file $FILE!"         ;;
         3 ) echo "Okay, we will delete the file $FILE LATER!"  ;;
