@@ -5,39 +5,54 @@ printf "\nHELLO $USER\n"
 FILE=
 
 # Target sweep directory
-# TODO: Don't hard-code this directory. Search "smartly"
+# TODO: Search "smartly" in other directories
 DIRNAME=Downloads
 DIRPATH=~/Downloads
 
 # Trash directory
 TRASH=~/.Trash
 
-# Generate a random bit
-RAND=$(gshuf -i0-1 -n1)
+# User Response
+ANS=
 
-# Randomly: Either give an old file, or give a random file
+while :
+do
+    # Generate a random bit
+    RAND=$(gshuf -i0-1 -n1)
 
-if [ $RAND = 0 ]; then
-    printf "\nHere's a RANDOM file. Do you want to delete it?\n"
-    FILE=$(ls $DIRPATH | gshuf -n 1)
-else
-    printf "\nHere's a really OLD file! Do you want to delete it?\n"
-    cd ~/Downloads
-    FILE=$(ls -tr1 | head -1)
-fi
+    # Randomly: Either give an old file, or give a random file
+    if [ $RAND = 0 ]; then
+        printf "Here's a RANDOM file. Do you want to delete it?\n"
+        FILE=$(ls $DIRPATH | gshuf -n 1)
+    else
+        printf "Here's a really OLD file! Do you want to delete it?\n"
+	cd ~/Downloads
+	FILE=$(ls -tr1 | head -1)
+    fi
 
-echo $FILE
+    echo $FILE
 
-select ANS in "Yes" "No" "Later"; do
-    printf "\n"
+    echo "Choose the option number"
+    echo "1) Yes"
+    echo "2) No"
+    echo "3) Later"
+    echo "4) Exit"
+    echo
+
+    # Prompt USER
+    read ANS
+
     case $ANS in
-        Yes )
-        echo "Okay! The file $FILE is now in Trash";
-        mv $DIRPATH/"{$FILE}" $TRASH;
-        break;;
-        No ) echo "Okay, we're keeping the file $FILE!"; break;;
-        Later ) echo "Okay, we will delete the file $FILE LATER!"; break;;
+        1 )
+            echo "Okay! The file $FILE is now in Trash"
+            mv $DIRPATH/"{$FILE}" $TRASH                       ;;
+        2 ) echo "Okay, we're keeping the file $FILE!"         ;;
+        3 ) echo "Okay, we will delete the file $FILE LATER!"  ;;
+	4 ) echo "Okay, see you later!"                        
+	    break                                              ;; 
     esac
+    echo
+
 done
 
 echo "Done sweeping!"
