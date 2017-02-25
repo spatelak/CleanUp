@@ -32,11 +32,11 @@ select ANS in "Yes" "No" "Later"; do
     printf "\n"
     case $ANS in
         Yes )
-        echo "Okay! It's now in Trash :-) ";
+        echo "Okay! The file $FILE is now in Trash";
         mv $DIRPATH/"{$FILE}" $TRASH;
         break;;
-        No ) echo "Okay, we're keeping the file!"; break;;
-        Later ) echo "You said LATER"; break;;
+        No ) echo "Okay, we're keeping the file $FILE!"; break;;
+        Later ) echo "Okay, we will delete the file $FILE LATER!"; break;;
     esac
 done
 
