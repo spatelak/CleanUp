@@ -24,7 +24,6 @@ else
     printf "\nHere's a really OLD file! Do you want to delete it?\n"
     cd ~/Downloads
     FILE=$(ls -tr1 | head -1)
-    #cd ../Projects/DJunker
 fi
 
 echo $FILE
@@ -34,7 +33,7 @@ select ANS in "Yes" "No" "Later"; do
     case $ANS in
         Yes )
         echo "Okay! It's now in Trash :-) ";
-        mv $DIRPATH/$FILE $TRASH;
+        mv $DIRPATH/"{$FILE}" $TRASH;
         break;;
         No ) echo "Okay, we're keeping the file!"; break;;
         Later ) echo "You said LATER"; break;;
